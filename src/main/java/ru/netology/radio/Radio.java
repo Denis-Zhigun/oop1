@@ -8,56 +8,50 @@ public class Radio {
     private int maxSound = 10;
     private int minSound = 0;
 
-    public int getCurrentChannel() {
-
-        if (currentChannel > minChannel && currentChannel < maxChannel || currentChannel == maxChannel || currentChannel == minChannel) {
-            return currentChannel;
+    public void setCurrentChannelConsole(int currentChannel) {
+        if (currentChannel >= minChannel && currentChannel <= maxChannel) {
+            this.currentChannel = currentChannel;
         }
-        return currentChannel;
     }
 
-
-    public void setCurrentChannel(int currentChannel) {
-        if (currentChannel >= minChannel) {
-            this.currentChannel = currentChannel;
-        }
-        if (currentChannel <= maxChannel) {
-            this.currentChannel = currentChannel;
-        }
-        if (currentChannel > maxChannel) {
+    public void setCurrentChannelNext(int currentChannel) {
+        if (currentChannel < maxChannel) {
+            this.currentChannel = currentChannel + 1;
+        } else if (currentChannel > maxChannel) {
             this.currentChannel = minChannel;
         }
-        if (currentChannel < minChannel) {
+    }
+
+    public void setCurrentChannelPrev(int currentChannel) {
+        if (currentChannel > minChannel) {
+            this.currentChannel = currentChannel - 1;
+        } else if (currentChannel < minChannel) {
             this.currentChannel = maxChannel;
         }
     }
 
-    public int getCurrentSound() {
-        if (currentSound < maxSound && currentSound > minSound) {
-            return currentSound;
-        }
-
-        if (currentSound == maxSound) {
-            return maxSound;
-        }
-        if (currentSound == minSound) {
-            return minSound;
-        }
-        return currentSound;
+    public int getCurrentChannel() {
+        return currentChannel;
     }
 
 
-    public void setCurrentSound(int currentSound) {
+    public int getCurrentSound() {
+        return currentSound;
+    }
+
+    public void setCurrentSoundPlus() {
         if (currentSound < maxSound) {
-            this.currentSound = currentSound;
-        }
-        if (currentSound > minSound) {
-            this.currentSound = currentSound;
-        }
-        if (currentSound >= maxSound) {
+            this.currentSound = currentSound + 1;
+        } else if (currentSound == maxSound) {
             this.currentSound = maxSound;
+
         }
-        if (currentSound <= minSound) {
+    }
+
+    public void setCurrentSoundMinus() {
+        if (currentSound > minSound) {
+            this.currentSound = currentSound - 1;
+        } else if (currentSound == minSound) {
             this.currentSound = minSound;
         }
     }
